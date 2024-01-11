@@ -1,3 +1,4 @@
+import { db } from '@/lib/db'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { headers } from 'next/headers'
 import { Webhook } from 'svix'
@@ -44,8 +45,49 @@ export const POST = async (req: Request) => {
 
   const eventType = evt.type
 
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
-  // console.log('Webhook body:', body)
+  if (eventType === 'user.created') {
+    await db.user.create({
+      data: {
+        externalUserId: payload.data.id,
+        username: payload.data.username,
+        imageUrl: payload.data.image_url,
+      },
+    })
+  }
+
+  if (eventType === 'user.updated') {
+    const currentUser = await db.user.findUnique({
+      where: { externalUserId: payload.data.id },
+    })
+
+    if (!currentUser) {
+      return new Response('User not found', { status: 404 })
+    }
+
+    await db.user.update({
+      where: {
+        externalUserId: payload.data.id,
+      },
+      data: {
+        username: payload.data.username,
+        imageUrl: payload.data.image_url,
+      },
+    })
+  }
+
+  if (eventType === 'user.deleted') {
+    const currentUser = await db.user.findUnique({
+      where: { externalUserId: payload.data.id },
+    })
+
+    if (!currentUser) {
+      return new Response('User not found', { status: 404 })
+    }
+
+    await db.user.delete({
+      where: { externalUserId: payload.data.id },
+    })
+  }
 
   return new Response('', { status: 200 })
 }
