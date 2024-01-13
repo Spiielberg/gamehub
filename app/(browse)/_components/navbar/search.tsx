@@ -55,7 +55,7 @@ export const Search = () => {
         type="submit"
         size="sm"
         variant="secondary"
-        className="rounded-l-none transition-opacity hover:opacity-75"
+        className="h-10 w-10 rounded-l-none transition-opacity hover:opacity-75"
       >
         <SearchIcon className="h-5 w-5 text-muted-foreground" />
       </Button>
