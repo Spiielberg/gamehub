@@ -24,7 +24,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
             forcedTheme="dark"
             storageKey="gamehub-theme"
           >
-            <Toaster theme="light" position="bottom-center" />
+            <Toaster richColors theme="light" position="bottom-center" />
             {children}
           </ThemeProvider>
         </body>
