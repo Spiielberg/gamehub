@@ -24,6 +24,7 @@ export const onUnfollow = async (id: string) => {
     const unfollowedUser = await unfollowUser(id)
 
     revalidatePath('/')
+
     if (unfollowedUser) {
       revalidatePath(`/${unfollowedUser.following.username}`)
     }

@@ -36,10 +36,12 @@ export const isFollowingUser = async (id: string) => {
       return true
     }
 
-    const existingFollow = await db.follow.findFirst({
+    const existingFollow = await db.follow.findUnique({
       where: {
-        followerId: self.id,
-        followingId: otherUser.id,
+        followerId_followingId: {
+          followerId: self.id,
+          followingId: otherUser.id,
+        },
       },
     })
 
@@ -64,10 +66,12 @@ export const followUser = async (id: string) => {
     throw new Error('Cannot follow yourself')
   }
 
-  const existingFollow = await db.follow.findFirst({
+  const existingFollow = await db.follow.findUnique({
     where: {
-      followerId: self.id,
-      followingId: otherUser.id,
+      followerId_followingId: {
+        followerId: self.id,
+        followingId: otherUser.id,
+      },
     },
   })
 
@@ -82,7 +86,6 @@ export const followUser = async (id: string) => {
     },
     include: {
       following: true,
-      follower: true,
     },
   })
 
@@ -104,10 +107,12 @@ export const unfollowUser = async (id: string) => {
     throw new Error('Cannot unfollow yourself')
   }
 
-  const existingFollow = await db.follow.findFirst({
+  const existingFollow = await db.follow.findUnique({
     where: {
-      followerId: self.id,
-      followingId: otherUser.id,
+      followerId_followingId: {
+        followerId: self.id,
+        followingId: otherUser.id,
+      },
     },
   })
 
@@ -115,7 +120,7 @@ export const unfollowUser = async (id: string) => {
     throw new Error('Not following')
   }
 
-  const follow = await db.follow.delete({
+  const unfollow = await db.follow.delete({
     where: {
       id: existingFollow.id,
     },
@@ -124,5 +129,5 @@ export const unfollowUser = async (id: string) => {
     },
   })
 
-  return follow
+  return unfollow
 }
