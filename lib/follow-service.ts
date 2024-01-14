@@ -8,6 +8,30 @@ export const getFollowedUsers = async () => {
     const followedUsers = db.follow.findMany({
       where: {
         followerId: self.id,
+        AND: [
+          {
+            NOT: {
+              following: {
+                blockedBy: {
+                  some: {
+                    blockerId: self.id,
+                  },
+                },
+              },
+            },
+          },
+          {
+            NOT: {
+              following: {
+                blocked: {
+                  some: {
+                    blockedId: self.id,
+                  },
+                },
+              },
+            },
+          },
+        ],
       },
       include: {
         following: true,
