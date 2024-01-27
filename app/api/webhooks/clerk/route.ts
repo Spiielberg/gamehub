@@ -41,8 +41,6 @@ export const POST = async (req: Request) => {
     return new Response('Error occurred', { status: 400 })
   }
 
-  const { id } = evt.data
-
   const eventType = evt.type
 
   if (eventType === 'user.created') {
