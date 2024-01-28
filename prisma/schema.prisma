@@ -70,7 +70,7 @@ model Stream {
 
   ingressId String? @unique
   serverUrl String? @db.Text
-  streamkey String? @db.Text
+  streamKey String? @db.Text
 
   isLive              Boolean @default(false)
   isChatEnabled       Boolean @default(true)
