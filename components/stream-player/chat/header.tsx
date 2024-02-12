@@ -23,6 +23,7 @@ export const HeaderSkeleton = () => {
     <div className="relative hidden border-b p-3 md:block">
       <Skeleton className="absolute left-3 top-3 size-6" />
       <Skeleton className="mx-auto h-6 w-28" />
+      <Skeleton className="absolute right-3 top-3 size-6" />
     </div>
   )
 }

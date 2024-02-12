@@ -20,6 +20,7 @@ export const Message = ({ data }: MessageProps) => {
           <span className="truncate" style={{ color }}>
             {data.from?.name}
           </span>
+          :
         </p>
         <p className="break-all text-sm">{data.message}</p>
       </div>

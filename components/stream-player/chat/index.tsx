@@ -1,8 +1,12 @@
 'use client'
 
-import { Form } from '@/components/stream-player/chat/form'
-import { Header } from '@/components/stream-player/chat/header'
-import { MessageList } from '@/components/stream-player/chat/message-list'
+import { Community } from '@/components/stream-player/chat/community'
+import { Form, FormSkeleton } from '@/components/stream-player/chat/form'
+import { Header, HeaderSkeleton } from '@/components/stream-player/chat/header'
+import {
+  MessageList,
+  MessageListSkeleton,
+} from '@/components/stream-player/chat/message-list'
 import { ChatVariant, useChatSidebar } from '@/store/use-chat-sidebar'
 import {
   useChat,
@@ -90,10 +94,22 @@ export const Chat = ({
         </>
       )}
       {variant === ChatVariant.COMMUNITY && (
-        <>
-          <p>Community</p>
-        </>
+        <Community
+          hostName={hostName}
+          viewerName={viewerName}
+          isChatHidden={isChatHidden}
+        />
       )}
+    </div>
+  )
+}
+
+export const ChatSkeleton = () => {
+  return (
+    <div className="flex h-[calc(100vh-64px)] flex-col border-b border-l pt-0">
+      <HeaderSkeleton />
+      <MessageListSkeleton />
+      <FormSkeleton />
     </div>
   )
 }

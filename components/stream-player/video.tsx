@@ -39,3 +39,13 @@ export const Video = ({ hostIdentity, hostName }: VideoProps) => {
     </div>
   )
 }
+
+export const VideoSkeleton = () => {
+  return (
+    <div className="aspect-video border-b bg-black">
+      <div className="h-full w-full">
+        <LoadingVideo label="Loading" />
+      </div>
+    </div>
+  )
+}
