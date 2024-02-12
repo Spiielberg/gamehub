@@ -2,6 +2,7 @@
 
 import { Chat, ChatSkeleton } from '@/components/stream-player/chat'
 import { Toggle } from '@/components/stream-player/chat/toggle'
+import { Header, HeaderSkeleton } from '@/components/stream-player/header'
 import { Video, VideoSkeleton } from '@/components/stream-player/video'
 import { useViewerToken } from '@/hooks/use-viewer-token'
 import { cn } from '@/lib/utils'
@@ -45,6 +46,14 @@ export const StreamPlayer = ({
       >
         <div className="hidden-scrollbar col-span-1 space-y-4 xl:col-span-3 xl:overflow-y-auto 2xl:col-span-4">
           <Video hostIdentity={user.id} hostName={user.username} />
+          <Header
+            hostIdentity={user.id}
+            hostName={user.username}
+            viewerIdentity={identity}
+            imageUrl={user.imageUrl}
+            isFollowing={isFollowing}
+            name={stream.name}
+          />
         </div>
         <div className={cn('col-span-1', collapsed && 'hidden')}>
           <Chat
@@ -67,7 +76,7 @@ export const StreamPlayerSkeleton = () => {
     <div className="grid h-full grid-cols-1 xl:grid-cols-4 xl:gap-y-0 2xl:grid-cols-5">
       <div className="hidden-scrollbar col-span-1 space-y-4 xl:col-span-3 xl:overflow-y-auto 2xl:col-span-4">
         <VideoSkeleton />
-        {/* TODO: Header Skeleton */}
+        <HeaderSkeleton />
       </div>
       <div className="col-span-1 bg-background">
         <ChatSkeleton />
