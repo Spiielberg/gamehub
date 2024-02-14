@@ -1,5 +1,6 @@
 'use client'
 
+import { AboutCard } from '@/components/stream-player/about-card'
 import { Chat, ChatSkeleton } from '@/components/stream-player/chat'
 import { Toggle } from '@/components/stream-player/chat/toggle'
 import { Header, HeaderSkeleton } from '@/components/stream-player/header'
@@ -14,7 +15,12 @@ import { Stream, User } from '@prisma/client'
 interface StreamPlayerProps {
   isFollowing: boolean
   stream: Stream
-  user: User & { stream: Stream | null }
+  user: User & {
+    stream: Stream | null
+    _count: {
+      followedBy: number
+    }
+  }
 }
 
 export const StreamPlayer = ({
@@ -45,7 +51,7 @@ export const StreamPlayer = ({
           collapsed && 'xl:grid-cols-2 2xl:grid-cols-2',
         )}
       >
-        <div className="hidden-scrollbar col-span-1 space-y-4 xl:col-span-3 xl:overflow-y-auto 2xl:col-span-4">
+        <div className="hidden-scrollbar col-span-1 space-y-4 pb-8 xl:col-span-3 xl:overflow-y-auto 2xl:col-span-4">
           <Video hostIdentity={user.id} hostName={user.username} />
           <Header
             hostIdentity={user.id}
@@ -60,6 +66,13 @@ export const StreamPlayer = ({
             viewerIdentity={identity}
             name={stream.name}
             thumbnailUrl={stream.thumbnailUrl}
+          />
+          <AboutCard
+            hostIdentity={user.id}
+            hostName={user.username}
+            viewerIdentity={identity}
+            bio={user.bio}
+            followedByCount={user._count.followedBy}
           />
         </div>
         <div className={cn('col-span-1', collapsed && 'hidden')}>

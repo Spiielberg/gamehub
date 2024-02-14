@@ -25,9 +25,9 @@ export const InfoCard = ({
   if (!isHost) return
 
   return (
-    <div className="px-4 pb-8">
+    <div className="px-4">
       <div className="rounded-xl bg-background">
-        <div className="flex items-center gap-x-2.5 p-4">
+        <div className="flex items-center gap-x-3 p-4 lg:p-6">
           <div className="h-auto w-auto rounded-md bg-white p-2">
             <PencilIcon className="size-5 text-background" />
           </div>
@@ -41,10 +41,8 @@ export const InfoCard = ({
           </div>
           <Modal initialName={name} initialThumbnailUrl={thumbnailUrl} />
         </div>
-        <div className="px-4">
-          <Separator />
-        </div>
-        <div className="space-y-4 p-4">
+        <Separator />
+        <div className="space-y-4 p-4 lg:p-6">
           <div>
             <h3 className="mb-2 text-sm text-muted-foreground">Name</h3>
             <p className="text-sm font-semibold">{name}</p>
