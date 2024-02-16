@@ -19,13 +19,13 @@ export const onBlock = async (id: string) => {
   try {
     blockedUser = await blockUser(id)
   } catch (error) {
-    // throw new Error('Internal Error')
+    throw new Error('Internal Error')
   }
 
   try {
     await roomService.removeParticipant(self.id, id)
   } catch (error) {
-    // throw new Error('Internal Error')
+    throw new Error('Internal Error')
   }
 
   revalidatePath(`/u/${self.username}/community`)
