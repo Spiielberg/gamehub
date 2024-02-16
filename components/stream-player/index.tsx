@@ -12,11 +12,24 @@ import { useChatSidebar } from '@/store/use-chat-sidebar'
 import { LiveKitRoom } from '@livekit/components-react'
 import { Stream, User } from '@prisma/client'
 
+type CustomStream = {
+  id: Stream['id']
+  name: Stream['name']
+  thumbnailUrl: Stream['thumbnailUrl']
+  isChatDelayed: Stream['isChatDelayed']
+  isChatEnabled: Stream['isChatEnabled']
+  isChatFollowersOnly: Stream['isChatFollowersOnly']
+}
+
 interface StreamPlayerProps {
   isFollowing: boolean
-  stream: Stream
-  user: User & {
-    stream: Stream | null
+  stream: CustomStream
+  user: {
+    id: User['id']
+    username: User['username']
+    bio: User['bio']
+    imageUrl: User['imageUrl']
+    stream: CustomStream | null
     _count: {
       followedBy: number
     }
