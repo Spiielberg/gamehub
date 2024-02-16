@@ -11,7 +11,7 @@ const ChatPage = async () => {
   }
 
   return (
-    <div className="p-6">
+    <div className="mx-auto max-w-screen-2xl p-6">
       <div className="mb-4">
         <h1 className="text-2xl font-bold">Chat settings</h1>
       </div>

@@ -15,6 +15,7 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
+  const [aspectRatio, setAspectRatio] = useState(0)
   const [volume, setVolume] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [lastVolumeBeforeMute, setLastVolume] = useState(50)
@@ -81,6 +82,12 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
     .filter((track) => track.participant.identity === participant.identity)
     .forEach((track) => {
       if (videoRef.current) {
+        const { videoWidth, videoHeight } = videoRef.current
+
+        if (videoWidth > 0 && videoHeight > 0 && aspectRatio === 0) {
+          setAspectRatio(videoWidth / videoHeight)
+        }
+
         track.publication.track?.attach(videoRef.current)
       }
     })
@@ -89,7 +96,8 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
     <div
       ref={wrapperRef}
       tabIndex={0}
-      className="relative flex h-full outline-none"
+      className="relative mx-auto flex max-h-[calc(100vh-168px)] outline-none"
+      style={{ aspectRatio: aspectRatio > 0 ? `${aspectRatio}` : '16 / 9' }}
     >
       <video ref={videoRef} width="100%" />
       <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-opacity">

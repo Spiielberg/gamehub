@@ -13,7 +13,7 @@ const KeysPage = async () => {
   }
 
   return (
-    <div className="p-6">
+    <div className="mx-auto max-w-screen-2xl p-6">
       <div className="mb-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold">Keys & URLs</h1>
         <ConnectModal />

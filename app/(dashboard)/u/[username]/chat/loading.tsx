@@ -3,7 +3,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 const ChatLoading = () => {
   return (
-    <div className="space-y-4 p-6">
+    <div className="mx-auto max-w-screen-2xl space-y-4 p-6">
       <Skeleton className="h-10 w-[200px]" />
       <div className="space-y-4">
         <ToggleCardSkeleton />
