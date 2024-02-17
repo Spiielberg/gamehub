@@ -26,12 +26,12 @@ export const Thumbnail = ({
         src={src}
         fill
         alt={username}
-        className="rounded-md object-cover transition-transform group-hover:-translate-y-1.5 group-hover:translate-x-1.5"
+        className="rounded-md object-cover transition-transform group-hover:-translate-y-2 group-hover:translate-x-2"
       />
     )
   } else {
     content = (
-      <div className="flex h-full w-full flex-col items-center justify-center gap-y-4 rounded-md bg-background transition-transform group-hover:-translate-y-1.5 group-hover:translate-x-1.5">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-y-4 rounded-md bg-background transition-transform group-hover:-translate-y-2 group-hover:translate-x-2">
         <UserAvatar
           size="lg"
           username={username}
@@ -48,9 +48,17 @@ export const Thumbnail = ({
         className="absolute inset-0 flex items-center justify-center rounded-md opacity-0 transition-opacity group-hover:opacity-100"
         style={{ backgroundColor: color }}
       />
+      <div
+        className="triangle-left absolute left-[-6px] top-[-6px] opacity-0 transition-transform group-hover:-translate-y-2 group-hover:opacity-100"
+        style={{ backgroundColor: color }}
+      />
+      <div
+        className="triangle-right absolute bottom-[-6px] right-[-6px] opacity-0 transition-transform group-hover:translate-x-2 group-hover:opacity-100"
+        style={{ backgroundColor: color }}
+      />
       {content}
       {isLive && (
-        <div className="absolute left-2 top-2 transition-transform group-hover:-translate-y-1.5 group-hover:translate-x-1.5">
+        <div className="absolute left-2 top-2 transition-transform group-hover:-translate-y-2 group-hover:translate-x-2">
           <LiveBadge />
         </div>
       )}
