@@ -1,5 +1,11 @@
 import { Thumbnail, ThumbnailSkeleton } from '@/components/thumbnail'
 import { Skeleton } from '@/components/ui/skeleton'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { UserAvatar, UserAvatarSkeleton } from '@/components/user-avatar'
 import { stringToColor } from '@/lib/utils'
 import { Stream, User } from '@prisma/client'
@@ -36,7 +42,16 @@ export const ResultCard = ({ data }: ResultCardProps) => {
             imageUrl={data.user.imageUrl}
           />
           <div className="flex flex-col overflow-hidden">
-            <p className="truncate text-sm font-semibold">{data.name}</p>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <p className="truncate text-sm font-semibold">{data.name}</p>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="px-1 py-0.5">
+                  <p className="max-w-52 text-xs">{data.name}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             <p className="text-xs" style={{ color }}>
               {data.user.username}
             </p>
