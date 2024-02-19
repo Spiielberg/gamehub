@@ -56,7 +56,7 @@ export const Thumbnail = ({
         className="triangle-right absolute bottom-[-6px] right-[-6px] opacity-0 transition-transform group-hover:translate-x-2 group-hover:opacity-100"
         style={{ backgroundColor: color }}
       />
-      {content}
+      <div className="aspect-video rounded-md bg-background">{content}</div>
       {isLive && (
         <div className="absolute left-2 top-2 transition-transform group-hover:-translate-y-2 group-hover:translate-x-2">
           <LiveBadge />
