@@ -1,3 +1,4 @@
+import { resetIngress } from '@/actions/ingress'
 import { db } from '@/lib/db'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { headers } from 'next/headers'
@@ -79,6 +80,8 @@ export const POST = async (req: Request) => {
   }
 
   if (eventType === 'user.deleted') {
+    await resetIngress(payload.data.id)
+
     const currentUser = await db.user.findUnique({
       where: { externalUserId: payload.data.id },
     })
