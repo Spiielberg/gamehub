@@ -18,33 +18,25 @@ export const onBlock = async (id: string) => {
 
   try {
     blockedUser = await blockUser(id)
+
+    revalidatePath('/')
   } catch (error) {
-    throw new Error('Internal Error')
+    // This means user is a guest
   }
 
   try {
     await roomService.removeParticipant(self.id, id)
   } catch (error) {
-    throw new Error('Internal Error')
+    // This means user is not in the room
   }
-
-  revalidatePath(`/u/${self.username}/community`)
 
   return blockedUser
 }
 
 export const onUnblock = async (id: string) => {
-  try {
-    const unblockedUser = await unblockUser(id)
+  const unblockedUser = await unblockUser(id)
 
-    revalidatePath('/')
+  revalidatePath('/')
 
-    if (unblockedUser) {
-      revalidatePath(`/${unblockedUser.blocked.username}`)
-    }
-
-    return unblockedUser
-  } catch (error) {
-    throw new Error('Internal Error')
-  }
+  return unblockedUser
 }
