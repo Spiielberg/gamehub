@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+   <img src="./public/spooky.svg" alt="Gamehub" width="256" />
+</p>
 
-## Getting Started
+<p align="center">
+   <a href="https://www.linkedin.com/in/spiielberg">
+      <img alt="Spielberg Hanielly" src="https://img.shields.io/badge/-Spielberg-0A66C2?style=flat&logo=Linkedin&logoColor=white" />
+   </a>
+</p>
 
-First, run the development server:
+<p align="center" style="line-height: 24px">
+  Gamehub is a web application for streaming video games. It allows users to watch live streams, chat with other users, and follow their favorite streamers and block those they don't like. It also provides a dashboard for streamers to manage their channel, and interact with their audience.
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project link
+[Gamehub](https://gamehub-spielberg.vercel.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies
+This project was made using the follow technologies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* [React](https://react.dev/)
+* [Next.js](https://nextjs.org)
+* [Clerk](https://clerk.com/)
+* [LiveKit](https://livekit.io/)
+* [uploadthing](https://uploadthing.com/)
+* [Prisma](https://www.prisma.io/)
+* [Neon](https://neon.tech/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* Login functionality with Clerk using Google account
+* Live streaming of video games
+* Chat functionality for users to interact with each other
+* Follow favorite streamers
+* Block unwanted users
+* Streamer dashboard for managing channels
+* Ability for streamers to add a cover image to their stream
